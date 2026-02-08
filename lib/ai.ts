@@ -30,7 +30,7 @@ async function callGemini(prompt: string): Promise<string> {
   try {
     // Retry logic for 429 errors
     let attempt = 0;
-    const maxRetries = 3;
+    const maxRetries = 5; // Increased from 3
 
     while (attempt <= maxRetries) {
       try {
@@ -57,10 +57,11 @@ async function callGemini(prompt: string): Promise<string> {
         });
 
         if (response.status === 429) {
-          if (attempt === maxRetries) throw new Error('API Rate Limit Exceeded (429) after retries');
-          // Exponential backoff: 1s, 2s, 4s
-          const waitTime = Math.pow(2, attempt) * 1000;
-          console.log(`Rate limited. Retrying in ${waitTime}ms...`);
+          if (attempt === maxRetries) throw new Error('API Rate Limit Exceeded (429) after 5 retries. Please wait a moment.');
+          // Aggressive Exponential backoff: 2s, 4s, 8s, 16s, 32s
+          // This allows us to survive the 60-second quota reset windows
+          const waitTime = Math.pow(2, attempt + 1) * 1000;
+          console.log(`Rate limited (429). Retrying in ${waitTime}ms...`);
           await new Promise(resolve => setTimeout(resolve, waitTime));
           attempt++;
           continue;
