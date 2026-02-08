@@ -126,7 +126,7 @@ export async function createItem(data: {
         ${data.content},
         ${data.type},
         ${data.sourceUrl || null},
-        ${(data.tags || []) as any},
+        ${(data.tags || [])},
         ${data.summary || null}
       )
       RETURNING *
