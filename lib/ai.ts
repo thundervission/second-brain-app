@@ -55,6 +55,9 @@ async function callGemini(prompt: string): Promise<string> {
     }
 
     const data = await response.json();
+    if (!response.ok) {
+      throw new Error(`Gemini API Error ${response.status}: ${JSON.stringify(data)}`);
+    }
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
     return text.trim();
   } catch (error) {
@@ -156,8 +159,8 @@ export async function queryKnowledgeBase(
     }));
 
     return { answer, relevantItems };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error querying knowledge base:', error);
-    return { answer: '', relevantItems: [], error: 'Failed to process query' };
+    return { answer: '', relevantItems: [], error: `Query failed: ${error.message || 'Unknown error'}` };
   }
 }
