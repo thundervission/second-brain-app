@@ -162,8 +162,8 @@ export default function Home() {
             <button
               onClick={() => setActiveTab('dashboard')}
               className={`flex items-center gap-2 border-b-2 px-6 py-4 font-medium transition-colors ${activeTab === 'dashboard'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-600 hover:text-gray-900'
                 }`}
             >
               <Search className="h-4 w-4" />
@@ -172,8 +172,8 @@ export default function Home() {
             <button
               onClick={() => setActiveTab('create')}
               className={`flex items-center gap-2 border-b-2 px-6 py-4 font-medium transition-colors ${activeTab === 'create'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-600 hover:text-gray-900'
                 }`}
             >
               <Plus className="h-4 w-4" />
@@ -182,8 +182,8 @@ export default function Home() {
             <button
               onClick={() => setActiveTab('query')}
               className={`flex items-center gap-2 border-b-2 px-6 py-4 font-medium transition-colors ${activeTab === 'query'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-600 hover:text-gray-900'
                 }`}
             >
               <Sparkles className="h-4 w-4" />

@@ -7,6 +7,8 @@ import { queryKnowledgeBase } from '@/lib/ai';
  * GET /api/public/brain/query?q=your+question
  * 100% FREE using Gemini and Vercel Postgres!
  */
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
